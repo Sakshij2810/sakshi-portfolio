@@ -39,7 +39,7 @@ export default function Contact() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY, // Web3Forms access key from .env
+          access_key: "6e05c8f7-b465-4d65-8ac6-c83b9bfda68d", // Web3Forms access key
           name: formState.name,
           email: formState.email,
           message: formState.message,
