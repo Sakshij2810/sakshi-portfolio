@@ -15,10 +15,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleMobileNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    
+
     // Small delay to let the menu close animation start
     setTimeout(() => {
       const targetId = href.replace("#", "");
@@ -154,4 +157,3 @@ export default function Header() {
     </header>
   );
 }
-
