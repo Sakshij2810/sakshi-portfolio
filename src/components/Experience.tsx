@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { experiences } from "../data/resume";
-import { Briefcase, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 
 export default function Experience() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
 
   return (
-    <section id="experience" className="py-24 lg:py-32 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-24 lg:py-32 relative overflow-hidden"
+    >
       {/* Background accent */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-gradient-to-r from-primary-500/5 to-transparent rounded-r-full" />
 
@@ -26,8 +29,8 @@ export default function Experience() {
             Work Experience
           </h2>
           <p className="text-dark-400 mt-4 max-w-2xl mx-auto">
-            Building impactful solutions across startups and enterprises,
-            from e-commerce platforms to enterprise ERP systems.
+            Building impactful solutions across startups and enterprises, from
+            e-commerce platforms to enterprise ERP systems.
           </p>
         </motion.div>
 
@@ -51,7 +54,9 @@ export default function Experience() {
                 {/* Timeline Dot */}
                 <div
                   className={`hidden md:block absolute top-8 w-4 h-4 rounded-full bg-primary-500 border-4 border-dark-950 ${
-                    index % 2 === 0 ? "right-0 translate-x-1/2 md:-right-2" : "left-0 -translate-x-1/2 md:-left-2"
+                    index % 2 === 0
+                      ? "right-0 translate-x-1/2 md:-right-2"
+                      : "left-0 -translate-x-1/2 md:-left-2"
                   }`}
                 />
 
@@ -79,7 +84,10 @@ export default function Experience() {
                   {/* Highlights */}
                   <ul className="space-y-3 mb-6">
                     {exp.highlights.slice(0, 4).map((highlight, hIndex) => (
-                      <li key={hIndex} className="flex items-start gap-3 text-dark-300 text-sm leading-relaxed">
+                      <li
+                        key={hIndex}
+                        className="flex items-start gap-3 text-dark-300 text-sm leading-relaxed"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0" />
                         <span>{highlight}</span>
                       </li>
@@ -111,4 +119,3 @@ export default function Experience() {
     </section>
   );
 }
-
