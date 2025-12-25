@@ -1,7 +1,16 @@
 import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { personalInfo } from "../data/resume";
-import { Mail, Phone, Linkedin, Github, Send, MapPin, CheckCircle, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Github,
+  Send,
+  MapPin,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
@@ -11,7 +20,9 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,7 +39,7 @@ export default function Contact() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // Replace with your Web3Forms access key
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY, // Web3Forms access key from .env
           name: formState.name,
           email: formState.email,
           message: formState.message,
@@ -54,8 +65,12 @@ export default function Contact() {
       setErrorMessage("Failed to send message. Please try email directly.");
       // Fallback to mailto
       setTimeout(() => {
-        const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`);
-        const body = encodeURIComponent(`Hi Sakshi,\n\n${formState.message}\n\nBest regards,\n${formState.name}\n${formState.email}`);
+        const subject = encodeURIComponent(
+          `Portfolio Contact from ${formState.name}`
+        );
+        const body = encodeURIComponent(
+          `Hi Sakshi,\n\n${formState.message}\n\nBest regards,\n${formState.name}\n${formState.email}`
+        );
         window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
       }, 2000);
     }
@@ -89,7 +104,10 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 lg:py-32 relative overflow-hidden bg-dark-900/30">
+    <section
+      id="contact"
+      className="py-24 lg:py-32 relative overflow-hidden bg-dark-900/30"
+    >
       {/* Background Elements */}
       <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-dark-950 to-transparent" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary-500/10 rounded-full blur-[128px]" />
@@ -109,8 +127,9 @@ export default function Contact() {
             Let's Work Together
           </h2>
           <p className="text-dark-400 mt-4 max-w-2xl mx-auto">
-            I'm currently open to new opportunities and collaborations.
-            Whether you have a project in mind or just want to say hi, feel free to reach out!
+            I'm currently open to new opportunities and collaborations. Whether
+            you have a project in mind or just want to say hi, feel free to
+            reach out!
           </p>
         </motion.div>
 
@@ -125,9 +144,9 @@ export default function Contact() {
               Contact Information
             </h3>
             <p className="text-dark-400 mb-8 leading-relaxed">
-              Ready to bring your ideas to life? I specialize in building scalable
-              web applications with modern technologies. Let's discuss how I can
-              contribute to your team or project.
+              Ready to bring your ideas to life? I specialize in building
+              scalable web applications with modern technologies. Let's discuss
+              how I can contribute to your team or project.
             </p>
 
             <div className="space-y-4">
@@ -135,7 +154,11 @@ export default function Contact() {
                 <motion.a
                   key={contact.label}
                   href={contact.href}
-                  target={contact.label === "Email" || contact.label === "Phone" ? "_self" : "_blank"}
+                  target={
+                    contact.label === "Email" || contact.label === "Phone"
+                      ? "_self"
+                      : "_blank"
+                  }
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -175,14 +198,19 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm text-dark-300 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm text-dark-300 mb-2"
+                >
                   Your Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormState({ ...formState, name: e.target.value })
+                  }
                   required
                   disabled={status === "loading"}
                   className="w-full px-4 py-3 rounded-xl bg-dark-900/80 border border-dark-800/50 text-cream-100 placeholder-dark-500 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20 transition-all duration-300 disabled:opacity-50"
@@ -191,14 +219,19 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm text-dark-300 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm text-dark-300 mb-2"
+                >
                   Your Email
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormState({ ...formState, email: e.target.value })
+                  }
                   required
                   disabled={status === "loading"}
                   className="w-full px-4 py-3 rounded-xl bg-dark-900/80 border border-dark-800/50 text-cream-100 placeholder-dark-500 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20 transition-all duration-300 disabled:opacity-50"
@@ -207,13 +240,18 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm text-dark-300 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm text-dark-300 mb-2"
+                >
                   Message
                 </label>
                 <textarea
                   id="message"
                   value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormState({ ...formState, message: e.target.value })
+                  }
                   required
                   disabled={status === "loading"}
                   rows={5}
@@ -230,7 +268,9 @@ export default function Contact() {
                   className="flex items-center gap-2 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400"
                 >
                   <CheckCircle size={20} />
-                  <span>Message sent successfully! I'll get back to you soon.</span>
+                  <span>
+                    Message sent successfully! I'll get back to you soon.
+                  </span>
                 </motion.div>
               )}
 
@@ -241,7 +281,10 @@ export default function Contact() {
                   className="flex items-center gap-2 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400"
                 >
                   <AlertCircle size={20} />
-                  <span>{errorMessage || "Something went wrong. Opening email client..."}</span>
+                  <span>
+                    {errorMessage ||
+                      "Something went wrong. Opening email client..."}
+                  </span>
                 </motion.div>
               )}
 
@@ -254,7 +297,11 @@ export default function Contact() {
                   <>
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                       className="w-5 h-5 border-2 border-dark-950 border-t-transparent rounded-full"
                     />
                     <span>Sending...</span>
@@ -263,14 +310,19 @@ export default function Contact() {
                   <>
                     <Send size={20} />
                     <span>Send Message</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    <span className="group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
                   </>
                 )}
               </button>
 
               <p className="text-xs text-dark-500 text-center">
                 Or email me directly at{" "}
-                <a href={`mailto:${personalInfo.email}`} className="text-primary-500 hover:underline">
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="text-primary-500 hover:underline"
+                >
                   {personalInfo.email}
                 </a>
               </p>
