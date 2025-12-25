@@ -15,6 +15,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // Small delay to let the menu close animation start
+    setTimeout(() => {
+      const targetId = href.replace("#", "");
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -110,7 +124,7 @@ export default function Header() {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleMobileNavClick(e, link.href)}
                   className="text-lg text-dark-300 hover:text-cream-100 transition-colors duration-300"
                 >
                   {link.name}
@@ -128,7 +142,7 @@ export default function Header() {
               </a>
               <a
                 href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleMobileNavClick(e, "#contact")}
                 className="px-5 py-3 bg-primary-500 hover:bg-primary-600 text-dark-950 font-medium text-center rounded-full transition-all duration-300"
               >
                 Let's Talk
