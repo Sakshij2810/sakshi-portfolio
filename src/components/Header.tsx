@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 import { navLinks } from "../data/resume";
 
 export default function Header() {
@@ -60,13 +60,22 @@ export default function Header() {
             ))}
           </motion.div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="hidden md:block"
+            className="hidden md:flex items-center gap-3"
           >
+            <a
+              href="https://drive.google.com/file/d/1sZDjLgnb7e5W3TU6_sFAMwyU5Ram2rpE/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 border border-primary-500/50 hover:border-primary-500 text-primary-500 hover:bg-primary-500/10 font-medium text-sm rounded-full transition-all duration-300 flex items-center gap-2"
+            >
+              <FileText size={16} />
+              Resume
+            </a>
             <a
               href="#contact"
               className="px-5 py-2.5 bg-primary-500 hover:bg-primary-600 text-dark-950 font-medium text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25"
@@ -108,9 +117,19 @@ export default function Header() {
                 </a>
               ))}
               <a
+                href="https://drive.google.com/file/d/1sZDjLgnb7e5W3TU6_sFAMwyU5Ram2rpE/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-4 px-5 py-3 border border-primary-500/50 text-primary-500 font-medium text-center rounded-full transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <FileText size={18} />
+                Resume
+              </a>
+              <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 px-5 py-3 bg-primary-500 hover:bg-primary-600 text-dark-950 font-medium text-center rounded-full transition-all duration-300"
+                className="px-5 py-3 bg-primary-500 hover:bg-primary-600 text-dark-950 font-medium text-center rounded-full transition-all duration-300"
               >
                 Let's Talk
               </a>
